@@ -1,24 +1,30 @@
 import logo from "./logo.svg";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import { PaymentUpsert } from "./components/PaymentUpsert";
+import { PaymentList } from "./components/PaymentList";
+import { Nav, Navbar } from "react-bootstrap";
+import { AppNavBar } from "./common/AppNavBar.js";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AppNavBar />
+
+      <Switch>
+        <Route path="/payment done">
+          <PaymentUpsert />
+        </Route>
+
+        <Route path="/payment list">
+          <PaymentList />
+        </Route>
+
+        <Route exact path="/">
+          <PaymentUpsert />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
